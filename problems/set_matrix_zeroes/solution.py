@@ -1,30 +1,30 @@
+def setZeroesHelper(matrix,i,j):
+    m = 0
+    while j+m < len(matrix[i]):
+        matrix[i][j+m] = 0
+        m += 1
+    m = 0
+    while j - m > -1:
+        matrix[i][j-m] = 0
+        m += 1
+    m = 0
+    while i + m < len(matrix):
+        matrix[i+m][j] = 0
+        m += 1
+    m = 0
+    while i - m > -1:
+        matrix[i-m][j] = 0
+        m += 1
+
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
-        #You have to find the positions. Then do the function on each position from a List
-                
-        #Find positions
-        zeroList = []
-        zeroPosition = []
-    
-        # l stands for list. n stands for number
-        for l in matrix:
-            for n in l:
-                if n == 0:
-                    zeroList.append(matrix.index(l))
-                    zeroPosition.append(l.index(n))
-                    l[l.index(n)] = None
-
-        print(zeroList)
-        print(zeroPosition)
+        zeroes = []
         
-        for position in zeroList:
-            for num in range(len(matrix[position])):
-                matrix[position][num] = 0;
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                if matrix[i][j] == 0:
+                    zeroes.append([i,j])
         
-        for collumn in zeroPosition:
-            for row in range(len(matrix)):
-                matrix[row][collumn] = 0
+        for pair in zeroes:
+            setZeroesHelper(matrix,pair[0],pair[1])
         
